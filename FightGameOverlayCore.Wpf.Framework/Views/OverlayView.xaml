@@ -1,0 +1,45 @@
+﻿<Window x:Class="FightGameOverlayCore.Wpf.Views.OverlayView"
+        x:ClassModifier="internal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Background="{Binding OverlayConfiguration.BackgroundBrush}"
+        Title="Overlay" Height="{Binding OverlayConfiguration.WindowHeight}" Width="{Binding OverlayConfiguration.WindowWidth}" WindowStyle="None" ResizeMode="NoResize"  Closed="Window_Closed" MouseDown="Window_MouseDown">
+    <Grid>
+        <Image Source="{Binding OverlayConfiguration.ImageSource}" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding OverlayConfiguration.OverlayGridHeight}" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{Binding OverlayConfiguration.RoundNameGridWidth}"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="PlayerOneArea" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding OverlayConfiguration.OutsideOverlayGridWidth}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" MaxWidth="{Binding OverlayConfiguration.WinsWidth}" />
+                </Grid.ColumnDefinitions>
+                <Label x:Name="PlayerOneName" Grid.Column="1" Content="{Binding MatchModel.DisplayedNamePlayerOne}" Foreground="{Binding OverlayConfiguration.PlayerFontBrush}" FontSize="{Binding OverlayConfiguration.PlayerFontSize}" FontStyle="{Binding OverlayConfiguration.PlayerFontStyle}" FontWeight="{Binding OverlayConfiguration.PlayerFontWeight}" FontFamily="{Binding OverlayConfiguration.PlayerFontFamily}" VerticalContentAlignment="Center" />
+                <Label x:Name="PlayerOneCount" Grid.Column="2" Visibility="{Binding OverlayConfiguration.WinsVisibility}" Content="{Binding MatchModel.DisplayedWinsPlayerOne}" Foreground="{Binding OverlayConfiguration.WinsFontBrush}" FontSize="{Binding OverlayConfiguration.WinsFontSize}" FontStyle="{Binding OverlayConfiguration.WinsFontStyle}" FontWeight="{Binding OverlayConfiguration.WinsFontWeight}" FontFamily="{Binding OverlayConfiguration.WinsFontFamily}" VerticalContentAlignment="Center" />
+            </Grid>
+            <Grid x:Name="RoundArea" Grid.Column="1">
+                <Label x:Name="RoundName" HorizontalAlignment="Center" Content="{Binding MatchModel.DisplayedTournamentRound}" Foreground="{Binding OverlayConfiguration.RoundFontBrush}" FontSize="{Binding OverlayConfiguration.RoundFontSize}" Visibility="{Binding OverlayConfiguration.RoundVisibility}" FontFamily="{Binding OverlayConfiguration.RoundFontFamily}" FontStyle="{Binding OverlayConfiguration.RoundFontStyle}" FontWeight="{Binding OverlayConfiguration.RoundFontWeight}"  VerticalContentAlignment="Center" />
+            </Grid>
+            <Grid x:Name="PlayerTwoArea" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MaxWidth="{Binding OverlayConfiguration.WinsWidth}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{Binding OverlayConfiguration.OutsideOverlayGridWidth}" />
+                </Grid.ColumnDefinitions>
+                <Label x:Name="PlayerTwoName" Grid.Column="1" HorizontalContentAlignment="Right" Content="{Binding MatchModel.DisplayedNamePlayerTwo}" Foreground="{Binding OverlayConfiguration.PlayerFontColor}" FontSize="{Binding OverlayConfiguration.PlayerFontSize}" FontFamily="{Binding OverlayConfiguration.PlayerFontFamily}" FontWeight="{Binding OverlayConfiguration.PlayerFontWeight}" FontStyle="{Binding OverlayConfiguration.PlayerFontStyle}" VerticalContentAlignment="Center"/>
+                <Label x:Name="PlayerTwoCount" Visibility="{Binding OverlayConfiguration.WinsVisibility}" Content="{Binding MatchModel.DisplayedWinsPlayerTwo}" Foreground="{Binding OverlayConfiguration.PlayerFontBrush}" FontSize="{Binding OverlayConfiguration.WinsFontSize}" FontStyle="{Binding OverlayConfiguration.WinsFontStyle}" FontWeight="{Binding OverlayConfiguration.WinsFontWeight}" FontFamily="{Binding OverlayConfiguration.WinsFontFamily}" VerticalContentAlignment="Center" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
